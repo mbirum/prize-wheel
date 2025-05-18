@@ -23,53 +23,42 @@ dtLast = GPIO.input(dtPin)
 posLast = pos
 
 try:
-
-    # led.powerOn()
-
-    increment = 0.0001
+	
+	increment = 0.0001
   
-    # counter = 0.0
-    # while True:
-	   #  c = int(counter * 10000)
-	   #  if 100 == c:
-		  #   counter = 0.0
-		  #   sw = GPIO.input(swPin)
-		  #   if sw != swLast:
-			 #    if sw == GPIO.LOW:
-				#     print "Pressed!"
-		    # swLast = sw
+	while True:
 
-  clk = GPIO.input(clkPin)
-  dt = GPIO.input(dtPin)
-  full = True
-
-  #half or full click
-  if clk != dt:
-      full = False
-      
-  if full:
-      #left click
-      if clkLast != clk and dtLast == dt:
-          pos -= knobIncrement
-          if pos < min:
-              pos = max # loop back
-      #right click
-      elif dtLast != dt and clkLast == clk:
-          pos += knobIncrement
-          if pos > max:
-              pos = min # loop back
-
-      if posLast != pos:
-          # do something with pos
-          print(pos)
-
-  clkLast = clk
-  dtLast = dt
-
-  posLast = pos
-  sleep(increment)
+		clk = GPIO.input(clkPin)
+		dt = GPIO.input(dtPin)
+		full = True
+	
+		#half or full click
+		if clk != dt:
+			full = False
+	      
+		if full:
+			#left click
+			if clkLast != clk and dtLast == dt:
+				pos -= knobIncrement
+				if pos < min:
+					pos = max # loop back
+			#right click
+			elif dtLast != dt and clkLast == clk:
+				pos += knobIncrement
+				if pos > max:
+					pos = min # loop back
+	
+		if posLast != pos:
+			# do something with pos
+			print(pos)
+	
+		clkLast = clk
+		dtLast = dt
+	
+		posLast = pos
+		sleep(increment)
 
 finally:
-    #os.system('/home/pi/devl/midi/midichan reset %s'%(channel))
-    GPIO.cleanup()
-    print "done"
+	#os.system('/home/pi/devl/midi/midichan reset %s'%(channel))
+	GPIO.cleanup()
+	print "done"
