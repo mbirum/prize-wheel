@@ -37,7 +37,7 @@ try:
 		  #   if sw != swLast:
 			 #    if sw == GPIO.LOW:
 				#     print "Pressed!"
-		    swLast = sw
+		    # swLast = sw
 
   clk = GPIO.input(clkPin)
   dt = GPIO.input(dtPin)
