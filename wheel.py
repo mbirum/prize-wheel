@@ -4,11 +4,9 @@ import sys
 import os
 import led
 
-channel = sys.argv[1]
-clkPin = int(sys.argv[2])
-dtPin = int(sys.argv[3])
-swPin = int(sys.argv[4])
-knobIncrement = int(sys.argv[5])
+clkPin = int(sys.argv[1])
+dtPin = int(sys.argv[2])
+knobIncrement = int(sys.argv[3])
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
