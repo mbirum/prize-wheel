@@ -12,7 +12,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(clkPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(dtPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(swPin, GPIO.IN)
+# GPIO.setup(swPin, GPIO.IN)
 
 min = 0
 max = 127
