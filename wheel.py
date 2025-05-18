@@ -28,7 +28,6 @@ try:
   
 	while True:
 		clk = GPIO.input(clkPin)
-		print(clk)
 		dt = GPIO.input(dtPin)
 		full = True
 	
