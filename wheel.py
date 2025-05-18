@@ -61,4 +61,4 @@ try:
 finally:
 	#os.system('/home/pi/devl/midi/midichan reset %s'%(channel))
 	GPIO.cleanup()
-	print "done"
+	print('done')
