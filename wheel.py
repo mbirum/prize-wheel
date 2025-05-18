@@ -2,7 +2,7 @@ from RPi import GPIO
 from time import sleep
 import sys
 import os
-import led
+# import led
 
 clkPin = int(sys.argv[1])
 dtPin = int(sys.argv[2])
