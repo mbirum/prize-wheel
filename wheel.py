@@ -27,7 +27,7 @@ try:
 	increment = 0.0001
   
 	while True:
-
+		print(pos)
 		clk = GPIO.input(clkPin)
 		dt = GPIO.input(dtPin)
 		full = True
