@@ -69,8 +69,17 @@ try:
 					spin_started = False
 					# map position to inventory value
 					value = 5
-					url = 'https://api.github.com/repos/mbirum/prize-wheel/actions/runs/15119304797/pending_deployments'
+					run_id = ""
 					headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {github_token}'}
+					url = 'https://api.github.com/repos/mbirum/prize-wheel/actions/runs?status=waiting'
+					try:
+						response = requests.get(url, headers=headers).json()
+						run_id = response['workflow_runs'][0]
+						if not run_id or run_id == None or len(run_id) <= 0:
+							print('could not get run id. try again')
+					except Exception as e:
+						print(e)
+					url = f'https://api.github.com/repos/mbirum/prize-wheel/actions/runs/{run_id}/pending_deployments'
 					data = {'environment_ids': [6794031496], 'state': 'approved', 'comment': f'{value}'}
 					try:
 						response = requests.post(url, headers=headers, data=json.dumps(data))
