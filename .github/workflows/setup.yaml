@@ -64,3 +64,13 @@ jobs:
           echo "Done."
           echo "----------------------------"
           cat inventory.txt
+
+      - name: Save Inventory
+        uses: EndBug/add-and-commit@v9
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          add: "inventory.txt"
+          author_name: "Matt Birum"
+          committer_name: "Matt Birum"
+          message: "Resetting Inventory"
+          pull: '--ff'
