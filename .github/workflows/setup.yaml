@@ -1,0 +1,22 @@
+name: "Setup. That. Wheel."
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup_inventory:
+    name: "Setup Inventory"
+    runs-on: ["ubuntu-latest"]
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v4
+
+      - id: setup
+        name: "Setup"
+        shell: bash
+        run: |
+          keys=()
+          while IFS= read line; do
+            echo "hi $line"
+          done < catalog.txt
