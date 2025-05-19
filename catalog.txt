@@ -1,6 +1,6 @@
-cap=3
-cards=5
-sticker=12
-flag=2
-socks=4
-wipe=6
+cap|mechanical keyboard caps=3
+cards|a deck of cards=5
+sticker|a sticker=12
+flag|a pennant flag=2
+socks|a pair of socks=4
+wipe|a screen cleaner=6
