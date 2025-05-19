@@ -2,7 +2,6 @@ quarterzip
 quarterzip
 notebook
 notebook
-notebook
 polo
 phonestand
 phonestand
