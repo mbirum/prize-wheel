@@ -69,7 +69,7 @@ try:
 					spin_started = False
 					# map position to inventory value
 					value = 5
-					url = 'https://api.github.com/repos/mbirum/prize-wheel/runs/15119304797/pending_deployments'
+					url = 'https://api.github.com/repos/mbirum/prize-wheel/actions/runs/15119304797/pending_deployments'
 					headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {github_token}'}
 					data = {'environment_ids': [6794031496], 'state': 'approved', 'comment': f'{value}'}
 					try:
