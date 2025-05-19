@@ -83,7 +83,7 @@ try:
 					data = {'environment_ids': [6794031496], 'state': 'approved', 'comment': f'{value}'}
 					try:
 						response = requests.post(url, headers=headers, data=json.dumps(data)).json()
-						print(response)
+						# print(response)
 					except Exception as e:
 						print(e)
 			position_last = position
