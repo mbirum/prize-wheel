@@ -65,6 +65,8 @@ jobs:
           add: "inventory.txt"
           author_name: "Matt Birum"
           committer_name: "Matt Birum"
+          message: "Resetting Inventory"
+          pull: '--ff'
 
       - name: Start Next Wheel Spin
         if: ${{ always() }}
@@ -73,5 +75,3 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh workflow run "SPIN! THAT! WHEEL!"
-          message: "Resetting Inventory"
-          pull: '--ff'
