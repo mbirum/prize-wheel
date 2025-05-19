@@ -29,6 +29,7 @@ jobs:
           inventory_count=$(cat inventory.txt | wc -l)
           if [ "$inventory_count" == "0" ]; then
             echo "Sorry! We're out of prizes ;'(  " >> $GITHUB_STEP_SUMMARY
+            echo " " >> $GITHUB_STEP_SUMMARY
             echo "![](https://github.com/buymyrum/prize-wheel/blob/main/images/cat.png?raw=true)" >> $GITHUB_STEP_SUMMARY
           else
             prize=$(cat inventory.txt | head -n "${item_number}" | tail -n 1)
