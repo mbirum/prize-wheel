@@ -53,6 +53,7 @@ try:
 		if position_last != position:
 			if not spin_started:
 				if not potential_spin:
+					print('potential spin')
 					potential_spin = True
 					movement_start_time = int(time.time())
 					potential_spin_position = position
@@ -63,7 +64,7 @@ try:
 					if time_diff >= 1:
 						if position_diff >= 10:
 							spin_started = True
-							potential_spin = False
+						potential_spin = False
 		else:
 			if spin_started:
 				spin_started = False
