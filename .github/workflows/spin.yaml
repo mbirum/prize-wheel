@@ -18,5 +18,8 @@ jobs:
           .github/workflows/scripts/get-wheel-input.sh
       - name: Pick Prize
         shell: bash
+        env:
+          item_number: ${{ steps.get_input.outputs.item_number }}
         run: |
-          echo "Picking prize..."
+          prize=$(cat inventory.txt | head -n "${item_number}" | tail -n 1)
+          echo "Chose ${prize} @ ${item_number}"
