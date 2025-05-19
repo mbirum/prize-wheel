@@ -23,7 +23,7 @@ jobs:
         id: get_input
         shell: bash
         run: |
-          ./.github/workflows/scripts/get-wheel-input.sh
+          .github/workflows/scripts/get-wheel-input.sh
       - name: Pick Prize
         shell: bash
         run: |
