@@ -39,3 +39,7 @@ jobs:
           committer_name: "Matt Birum"
           message: "Removing ${{ steps.pick_prize.outputs.prize }} from inventory"
           pull: '--ff'
+      - name: Start Next Wheel Spin
+        shell: bash
+        run: |
+          gh workflow run "SPIN! THAT! WHEEL!"
