@@ -1,5 +1,4 @@
 wipe
-flag
 sticker
 cards
 cap
