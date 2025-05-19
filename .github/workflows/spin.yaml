@@ -41,5 +41,7 @@ jobs:
           pull: '--ff'
       - name: Start Next Wheel Spin
         shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh workflow run "SPIN! THAT! WHEEL!"
