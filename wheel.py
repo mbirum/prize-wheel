@@ -50,7 +50,7 @@ try:
 		else:
 			if spin_started:
 				spin_started = False
-				print(f'Stopped! - {pos})
+				print(f'Stopped! - {pos}')
 	
 		clkLast = clk
 		dtLast = dt
