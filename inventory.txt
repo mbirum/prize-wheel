@@ -2,7 +2,6 @@ wipe
 sticker
 sticker
 cap
-sticker
 cards
 cap
 wipe
