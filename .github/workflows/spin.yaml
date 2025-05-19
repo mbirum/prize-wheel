@@ -17,6 +17,7 @@ jobs:
   Spin:
     name: "Spin"
     runs-on: ["ubuntu-latest"]
+    needs: ["Start"]
     steps:
       - name: Get Wheel Input
         id: get_input
