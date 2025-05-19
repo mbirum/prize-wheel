@@ -8,6 +8,11 @@ jobs:
     name: "Start"
     runs-on: ["ubuntu-latest"]
     environment: "Wait For Spin"
+    steps:
+      - name: Wait
+        shell: bash
+        run: |
+          echo "Waiting for wheel input..."
 
   Spin:
     name: "Spin"
