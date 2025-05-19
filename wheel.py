@@ -41,7 +41,6 @@ position_last = position
 try:
 	spin_started = False
 	start_time = int(time.time())
-	last_spin_start_position = position
 	
 	while True:
 		clk = GPIO.input(clk_pin)
@@ -80,7 +79,6 @@ try:
 				if (position - position_last) >= spin_threshold: 
 					print(f'spin started - {position}')
 					spin_started = True
-					last_spin_start_position = position
 			else:
 				if position == position_last:
 					spin_started = False
