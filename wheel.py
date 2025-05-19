@@ -63,6 +63,7 @@ try:
 					position_diff = position - potential_spin_position
 					if time_diff >= 1:
 						if position_diff >= 10:
+							print('spin started')
 							spin_started = True
 						potential_spin = False
 		else:
