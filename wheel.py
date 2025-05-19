@@ -17,7 +17,7 @@ GPIO.setup(dt_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 min = 0
 max = 1000000
-position = min
+position = 500
 clk_last = GPIO.input(clk_pin)
 dt_last = GPIO.input(dt_pin)
 position_last = position
