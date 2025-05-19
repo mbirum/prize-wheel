@@ -4,6 +4,7 @@ import time
 import requests
 import json
 import sys
+import subprocess
 # import led
 
 clk_pin = int(sys.argv[1])
@@ -32,6 +33,7 @@ position_last = position
 try:
 	spin_started = False
 	start_time = int(time.time())
+	last_spin_start_position = position
 	
 	while True:
 		clk = GPIO.input(clk_pin)
@@ -63,12 +65,20 @@ try:
 				if (position - position_last) >= spin_threshold: 
 					print(f'spin started - {position}')
 					spin_started = True
+					last_spin_start_position = position
 			else:
 				if position == position_last:
 					print(f'stopped - {position}')
 					spin_started = False
 					# map position to inventory value
-					value = 5
+					subprocess.run(['git', 'pull'])
+					inventory_count = 0
+					with open("inventory.txt", "rbU") as f:
+    						inventory_count = sum(1 for _ in f)
+					print(f'inventory_count={inventory_count}')
+					position_difference = position - last_spin_start_position
+					value = position_difference % (inventory_count+1)
+					print(f'value={value}')
 					run_id = ""
 					headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {github_token}'}
 					url = 'https://api.github.com/repos/mbirum/prize-wheel/actions/runs?status=waiting'
