@@ -4,6 +4,7 @@ cards
 socks
 sticker
 cap
+sticker
 cards
 cap
 sticker
@@ -13,9 +14,12 @@ wipe
 sticker
 cards
 flag
+sticker
+sticker
 cards
 wipe
 wipe
+sticker
 socks
 flag
 socks
@@ -23,10 +27,6 @@ socks
 wipe
 sticker
 wipe
-sticker
-sticker
-sticker
-sticker
 sticker
 sticker
 sticker
