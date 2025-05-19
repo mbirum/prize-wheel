@@ -54,11 +54,11 @@ try:
 		if (current_time > start_time): # check every full second
 			if not spin_started:
 				if (position - position_last) >= spin_threshold: 
-					print('spin started')
+					print(f'spin started - {position}')
 					spin_started = True
 			else:
 				if position == position_last:
-					print('stopped')
+					print(f'stopped - {position}')
 					spin_started = False
 			position_last = position
 			start_time = current_time
