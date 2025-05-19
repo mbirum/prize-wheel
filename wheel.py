@@ -23,13 +23,8 @@ dt_last = GPIO.input(dt_pin)
 position_last = position
 
 try:
-	potential_spin = False
-	potential_spin_position = position
-	spin_started = False
-	potential_stop = False
-	movement_start_time = None
-	movement_stop_time = None
-	spin_start_time = None
+	
+	start_time = int(time.time())
 	
 	while True:
 		clk = GPIO.input(clk_pin)
@@ -52,44 +47,20 @@ try:
 				if position > max:
 					position = min # loop back
 	
-		if position_last != position:
-			if not spin_started:
-				if not potential_spin:
-					print('potential spin')
-					potential_spin = True
-					movement_start_time = int(time.time())
-					potential_spin_position = position
-				else:
-					current_time = int(time.time())
-					time_diff = int(current_time - movement_start_time)
-					position_diff = position - potential_spin_position
-					if time_diff >= 1:
-						if position_diff >= 10:
-							print('spin started')
-							spin_started = True
-						else:
-							print('spin reset')
-						potential_spin = False
-		else:
-			if not potential_stop:
-				if spin_started:
-					print('potential stop')
-					potential_stop = True
-					movement_stop_time = int(time.time())
-			else:
-				current_time = int(time.time())
-				time_diff = int(current_time - movement_stop_time)
-				if time_diff >= 1:
-					spin_started = False
-					potential_stop = False
-					print(f'Stopped! - {position}')
+		# if position_last != position:
+			# adsfasdf
 	
 		clk_last = clk
 		dt_last = dt
-	
-		position_last = position
-		
-		sleep_interval = 0.1
+
+		current_time = int(time.time())
+		if (current_time > start_time): # every full second
+			if (position - position_last) >= 8:
+				print('spin started')
+			position_last = position
+			start_time = current_time
+			
+		sleep_interval = 0.0001
 		sleep(sleep_interval)
 
 finally:
