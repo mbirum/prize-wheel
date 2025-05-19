@@ -68,8 +68,11 @@ try:
 					url = 'https://api.github.com/repos/mbirum/prize-wheel/runs/15119304797/pending_deployments'
 					headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {github_token}'}
 					data = {'environment_ids': [6794031496], 'state': 'approved', 'comment': f'{value}'}
-					response = requests.post(url, headers=headers, data=json.dumps(data))
-					print(response)
+					try:
+						response = requests.post(url, headers=headers, data=json.dumps(data))
+						print(response)
+					except Exception as e:
+						print(e)
 			position_last = position
 			start_time = current_time
 			
