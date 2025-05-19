@@ -41,12 +41,12 @@ try:
 		if full:
 			#left click
 			if clk_last != clk and dt_last == dt:
-				position -= knobIncrement
+				position -= knob_increment
 				if position < min:
 					position = max # loop back
 			#right click
 			elif dt_last != dt and clk_last == clk:
-				position += knobIncrement
+				position += knob_increment
 				if position > max:
 					position = min # loop back
 	
