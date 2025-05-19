@@ -28,6 +28,10 @@ jobs:
             for ((i=0; i<count; i++)); do
               echo "$key" >> "${key}.key.txt"
             done
+            echo "key=$key"
+            echo "count=$count"
+            echo "-------------------------"
+            cat "${key}.key.txt"
           done < catalog.txt
 
           key_count=${#keys[@]}
