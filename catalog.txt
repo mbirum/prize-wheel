@@ -1,0 +1,4 @@
+polo=8
+notebook=16
+phonestand=18
+quarterzip=6
