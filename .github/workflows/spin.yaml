@@ -44,6 +44,7 @@ jobs:
           message: "Removing ${{ steps.pick_prize.outputs.prize }} from inventory"
           pull: '--ff'
       - name: Start Next Wheel Spin
+        if: ${{ always() }}
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
