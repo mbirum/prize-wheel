@@ -1,4 +1,4 @@
-polo=8
-notebook=16
-phonestand=18
-quarterzip=6
+polo=10
+notebook=4
+phonestand=7
+quarterzip=2
