@@ -1,7 +1,6 @@
 wipe
 flag
 sticker
-flag
 cards
 socks
 cap
