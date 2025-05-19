@@ -25,3 +25,13 @@ jobs:
         run: |
           prize=$(cat inventory.txt | head -n "${item_number}" | tail -n 1)
           echo "Chose ${prize} @ ${item_number}"
+          sed -i "${item_number}d" "inventory.txt"
+      - name: Save Inventory
+        uses: EndBug/add-and-commit@v9
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          add: "inventory.txt"
+          author_name: "Matt Birum"
+          committer_name: "Matt Birum"
+          message: "Removing item from inventory"
+          pull: '--ff'
