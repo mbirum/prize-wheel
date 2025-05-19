@@ -30,10 +30,6 @@ jobs:
             for ((i=0; i<count; i++)); do
               echo "$key" >> "${key}.key.txt"
             done
-            echo "key=$key"
-            echo "count=$count"
-            echo "-------------------------"
-            cat "${key}.key.txt"
           done < catalog.txt
 
           key_count=${#keys[@]}
@@ -41,7 +37,6 @@ jobs:
           is_done=false
           while [ "$is_done" != "true" ]; do
             random_num=$(( (RANDOM % ${key_count}) ))
-            echo "random=$random_num"
             # randomly get key and pop last line from its file until all are gone
             key="${keys[random_num]}"
             key_file="${key}.key.txt"
@@ -63,10 +58,6 @@ jobs:
             done
           done
 
-          echo "Done."
-          echo "----------------------------"
-          cat inventory.txt
-
       - name: Save Inventory
         uses: EndBug/add-and-commit@v9
         with:
@@ -74,5 +65,13 @@ jobs:
           add: "inventory.txt"
           author_name: "Matt Birum"
           committer_name: "Matt Birum"
+
+      - name: Start Next Wheel Spin
+        if: ${{ always() }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          gh workflow run "SPIN! THAT! WHEEL!"
           message: "Resetting Inventory"
           pull: '--ff'
