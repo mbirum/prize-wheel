@@ -13,7 +13,6 @@ socks
 sticker
 cards
 wipe
-cards
 sticker
 cards
 sticker
