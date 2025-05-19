@@ -13,7 +13,9 @@ spin_threshold = 25
 github_token = ""
 
 with open("/home/mattbirum/github/.token", "r") as file:
-    github_token = file.read()
+	for line in file:
+		if line and len(line) > 0:
+  		github_token = line.strip()
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
