@@ -1,4 +1,6 @@
-polo=10
-notebook=4
-phonestand=7
-quarterzip=2
+cap=3
+cards=5
+sticker=12
+flag=2
+socks=4
+wipe=6
