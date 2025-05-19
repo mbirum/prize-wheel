@@ -21,12 +21,14 @@ jobs:
         run: |
           .github/workflows/scripts/get-wheel-input.sh
       - name: Pick Prize
+        id: pick_prize
         shell: bash
         env:
           item_number: ${{ steps.get_input.outputs.item_number }}
         run: |
           prize=$(cat inventory.txt | head -n "${item_number}" | tail -n 1)
           echo "Chose ${prize} @ ${item_number}"
+          echo "prize=${prize}" >> $GITHUB_OUTPUT
           sed -i "${item_number}d" "inventory.txt"
       - name: Save Inventory
         uses: EndBug/add-and-commit@v9
@@ -35,5 +37,5 @@ jobs:
           add: "inventory.txt"
           author_name: "Matt Birum"
           committer_name: "Matt Birum"
-          message: "Removing item from inventory"
+          message: "Removing ${{ steps.pick_prize.outputs.prize }} from inventory"
           pull: '--ff'
