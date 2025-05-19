@@ -35,6 +35,7 @@ jobs:
           is_done=false
           while [ "$is_done" != "true" ]; do
             random_num=$(( (RANDOM % ${key_count}) + 1 ))
+            echo "random=$random_num"
             # randomly get key and pop last line from its file until all are gone
             key="${keys[random_num]}"
             key_file="${key}.key.txt"
