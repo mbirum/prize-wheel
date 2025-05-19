@@ -1,10 +1,13 @@
 from RPi import GPIO
 from time import sleep
 import time
+import requests
+import json
 import sys
 import os
 # import led
 
+github_token = os.getenv("GITHUB_TOKEN")
 clk_pin = int(sys.argv[1])
 dt_pin = int(sys.argv[2])
 knob_increment = 1
@@ -60,6 +63,12 @@ try:
 				if position == position_last:
 					print(f'stopped - {position}')
 					spin_started = False
+					# map position to inventory value
+					value = 5
+					url = 'https://api.github.com/repos/mbirum/prize-wheel/runs/15119304797/pending_deployments'
+					headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {github_token}'}
+					data = {'environment_ids': [6794031496], 'state': 'approved', 'comment': f'{value}'}
+					response = requests.post(url, headers=headers, data=json.dumps(data))
 			position_last = position
 			start_time = current_time
 			
