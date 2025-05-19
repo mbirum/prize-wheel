@@ -10,7 +10,6 @@ polo
 phonestand
 phonestand
 phonestand
-phonestand
 polo
 polo
 polo
