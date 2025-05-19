@@ -55,7 +55,7 @@ try:
 
 		current_time = int(time.time())
 		if (current_time > start_time): # every full second
-			if (position - position_last) >= 8:
+			if (position - position_last) >= 15:
 				print('spin started')
 			position_last = position
 			start_time = current_time
