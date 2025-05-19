@@ -7,8 +7,8 @@ import os
 
 clk_pin = int(sys.argv[1])
 dt_pin = int(sys.argv[2])
-knob_increment = int(sys.argv[3])
 knob_increment = 1
+spin_threshold = 25
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -47,16 +47,13 @@ try:
 				if position > max:
 					position = min # loop back
 	
-		# if position_last != position:
-			# adsfasdf
-	
 		clk_last = clk
 		dt_last = dt
 
 		current_time = int(time.time())
-		if (current_time > start_time): # every full second
+		if (current_time > start_time): # check every full second
 			if not spin_started:
-				if (position - position_last) >= 25:
+				if (position - position_last) >= spin_threshold: 
 					print('spin started')
 					spin_started = True
 			else:
