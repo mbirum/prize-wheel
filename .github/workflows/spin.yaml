@@ -27,7 +27,7 @@ jobs:
           item_number: ${{ steps.get_input.outputs.item_number }}
         run: |
           prize=$(cat inventory.txt | head -n "${item_number}" | tail -n 1)
-          prize_description=$(cat catalog.txt | grep "${prize}|" cut -d'=' -f 1 | cut -d'|' -f 2)
+          prize_description=$(cat catalog.txt | grep "${prize}|" | cut -d'=' -f 1 | cut -d'|' -f 2)
           echo "#### You've won ${prize_description}!" >> $GITHUB_STEP_SUMMARY
           image_url="https://github.com/buymyrum/prize-wheel/blob/main/images/${prize}.png?raw=true"
           image_markdown="![](${image_url})"
