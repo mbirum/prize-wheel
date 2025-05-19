@@ -4,14 +4,16 @@ import time
 import requests
 import json
 import sys
-import os
 # import led
 
-github_token = os.getenv("GITHUB_TOKEN")
 clk_pin = int(sys.argv[1])
 dt_pin = int(sys.argv[2])
 knob_increment = 1
 spin_threshold = 25
+github_token = ""
+
+with open("/home/mattbirum/github/.token", "r") as file:
+    github_token = file.read()
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
