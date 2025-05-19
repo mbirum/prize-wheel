@@ -69,6 +69,7 @@ try:
 					headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {github_token}'}
 					data = {'environment_ids': [6794031496], 'state': 'approved', 'comment': f'{value}'}
 					response = requests.post(url, headers=headers, data=json.dumps(data))
+					print(response)
 			position_last = position
 			start_time = current_time
 			
