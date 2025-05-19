@@ -16,7 +16,46 @@ jobs:
         name: "Setup"
         shell: bash
         run: |
+          rm -rf inventory.txt
+          touch inventory.txt
           keys=()
           while IFS= read line; do
-            echo "hi $line"
+            key=$(echo "$line" | cut -d'=' -f 1)
+            if [[ ! " ${keys[@]} " =~ " ${key} " ]]; then
+              keys+=("${key}")
+            fi
+            count=$(echo "$line" | cut -d'=' -f 2)
+            for ((i=0; i<count; i++)); do
+              echo "$key" >> "${key}.key.txt"
+            done
           done < catalog.txt
+
+          key_count=${#keys[@]}
+
+          is_done=false
+          while [ "$is_done" != "true" ]; do
+            random_num=$(( (RANDOM % ${key_count}) + 1 ))
+            # randomly get key and pop last line from its file until all are gone
+            key="${keys[random_num]}"
+            key_file="${key}.key.txt"
+            content=$(cat "$key_file")
+            if [ -n "$content" ]; then
+              last_line=$(tail -n 1 "$key_file")
+              echo "$last_line" >> inventory.txt
+              truncate -s "-$(wc -c < "$key_file")" "$key_file"
+            fi
+
+            # evaluate is_done by checking contents of each key file
+            is_done=true
+            for key in "${keys[@]}"; do
+              content=$(cat "${key}.key.txt")
+              if [ -n "$content" ]; then
+                is_done=false
+                break
+              do
+            done
+          done
+
+          echo "Done."
+          echo "----------------------------"
+          cat inventory.txt
