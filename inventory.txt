@@ -2,7 +2,6 @@ wipe
 flag
 sticker
 flag
-wipe
 cards
 socks
 cap
