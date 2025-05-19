@@ -89,7 +89,7 @@ try:
 	
 		position_last = position
 		
-		sleep_interval = 0.001
+		sleep_interval = 0.1
 		sleep(sleep_interval)
 
 finally:
