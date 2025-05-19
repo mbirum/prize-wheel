@@ -60,7 +60,9 @@ try:
 				else:
 					current_time = int(time.time())
 					time_diff = int((current_time - movement_start_time) / 1000) # in seconds
+					print(f'time_diff={time_diff}')
 					position_diff = position - potential_spin_position
+					print(f'position_diff={position_diff}')
 					if time_diff >= 1:
 						if position_diff >= 10:
 							print('spin started')
