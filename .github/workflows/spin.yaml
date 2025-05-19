@@ -7,6 +7,9 @@ jobs:
   Spin:
     name: "Spin"
     runs-on: ["ubuntu-latest"]
+    concurrency:
+      group: spin-group
+      cancel-in-progress: true
     environment: "Spin"
     steps:
       - name: Checkout
