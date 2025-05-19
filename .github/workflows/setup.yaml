@@ -52,7 +52,7 @@ jobs:
               if [ -n "$content" ]; then
                 is_done=false
                 break
-              do
+              fi
             done
           done
 
