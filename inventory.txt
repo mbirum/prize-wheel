@@ -1,5 +1,4 @@
 quarterzip
-polo
 quarterzip
 notebook
 notebook
