@@ -1,5 +1,6 @@
 from RPi import GPIO
 from time import sleep
+import time
 import sys
 import os
 # import led
@@ -12,20 +13,19 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(clkPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(dtPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-# GPIO.setup(swPin, GPIO.IN)
 
 min = 0
 max = 127
 pos = min
 clkLast = GPIO.input(clkPin)
 dtLast = GPIO.input(dtPin)
-# swLast = GPIO.input(swPin)
 posLast = pos
 
 try:
+	checks = []
+	spin_started = False
+	spin_start_time = None
 	
-	increment = 0.0001
-  
 	while True:
 		clk = GPIO.input(clkPin)
 		dt = GPIO.input(dtPin)
@@ -48,16 +48,21 @@ try:
 					pos = min # loop back
 	
 		if posLast != pos:
-			# do something with pos
-			print(pos)
+			if not spin_started:
+				spin_started = True
+		else:
+			if spin_started:
+				spin_started = False
+				print(f'Stopped! - {pos})
 	
 		clkLast = clk
 		dtLast = dt
 	
 		posLast = pos
-		sleep(increment)
+		
+		sleep_interval = 0.01
+		sleep(sleep_interval)
 
 finally:
-	#os.system('/home/pi/devl/midi/midichan reset %s'%(channel))
 	GPIO.cleanup()
 	print('done')
