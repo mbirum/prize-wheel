@@ -1,0 +1,103 @@
+name: "SPIN! THAT! WHEEL!"
+
+on:
+  workflow_dispatch:
+    inputs:
+      number-guess:
+        description: 'Pick a number, & Actions will determine your prize!'
+        type: number
+        required: true
+
+jobs:
+  picking_prize:
+    name: "Picking your Prize!"
+    runs-on: ["small-linux"]
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: "main"
+
+      - id: randomize_prizes
+        name: "Randomizing the Prizes..."
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const prizeCatalog = JSON.parse(fs.readFileSync('prize-catalog.json', 'utf8'));
+            
+            const { 0: _, ...prizes } = { ...new Array(53).fill("notebook") };
+            
+            const numberOfPolos = prizeCatalog['polo'];
+            const numberOfPhonestands = prizeCatalog['phonestand'];
+            const numberOfQuarterzips= prizeCatalog['quarterzip'];          
+
+            let usedRandomIndexs = new Array();
+            setPrizeRandomIndex(numberOfPolos, 'polo', prizes, usedRandomIndexs);
+            setPrizeRandomIndex(numberOfPhonestands, 'phonestand', prizes, usedRandomIndexs);
+            setPrizeRandomIndex(numberOfQuarterzips, 'quarterzip', prizes, usedRandomIndexs);
+
+            return JSON.stringify(prizes);
+            
+            function setPrizeRandomIndex(numberOfPrizes, prizeName, prizes, usedRandomIndexs) {
+              const prizeKeys = Object.keys(prizes);
+              for (let index = 0; index < numberOfPrizes; index++) { 
+                let randomIndex = prizeKeys[Math.floor(Math.random() * prizeKeys.length)];
+                
+                while (usedRandomIndexs.includes(randomIndex)) {
+                  randomIndex = prizeKeys[Math.floor(Math.random() * prizeKeys.length)];
+                }
+  
+                usedRandomIndexs.push(randomIndex);
+                prizes[randomIndex.toString()] = prizeName;
+              }
+            }
+
+      - id: pick_prize
+        name: "Picking your Prize... Good Luck..."  
+        env:
+          NUMBER_GUESS: ${{ inputs.number-guess }}
+          PRIZES: ${{ steps.randomize_prizes.outputs.result }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');            
+            const prizeCatalog = JSON.parse(fs.readFileSync('prize-catalog.json', 'utf8'));
+
+            const prizes = JSON.parse(JSON.parse(process.env.PRIZES));
+            const numberGuess = (process.env.NUMBER_GUESS).toString(); 
+            
+            const wonPrize = prizes[numberGuess];
+
+            const prizeCatalogIndex = wonPrize.toString();
+            prizeCatalog[prizeCatalogIndex] = prizeCatalog[prizeCatalogIndex] - 1;
+            
+            fs.writeFile('prize-catalog.json', JSON.stringify(prizeCatalog), (error) => {
+              if (error) throw error;
+            });
+
+            return wonPrize         
+      
+      - id: set_prize
+        name: "Displaying your Prize..."
+        shell: bash
+        env:
+          WON_PRIZE: ${{ steps.pick_prize.outputs.result }}
+        run: |          
+          {
+            echo "## Congrats! You've won a prize 🥳! Your prize is a: $WON_PRIZE"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - id: update_prize_catalog
+        name: "Updating Prize Catalog Inventory"
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "prize-catalog.json"
+          pathspec_error_handling: exitImmediately
+          author_name: "github-actions[bot]"
+          author_email: "16352+github-actions[bot]@users.noreply.github.nwie.net"
+          committer_name: "github-actions[bot]"
+          committer_email: "16352+github-actions[bot]@users.noreply.github.nwie.net"
+          message: "[skip ci] Updating Prize Catalog"
+          pull: "--rebase --autostash"
