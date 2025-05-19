@@ -22,4 +22,3 @@ sticker
 wipe
 sticker
 sticker
-sticker
