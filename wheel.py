@@ -15,8 +15,8 @@ github_token = ""
 with open("/home/mattbirum/github/.token", "r") as file:
 	for line in file:
 		if line and len(line) > 0:
-  		github_token = line.strip()
-
+			github_token = line.strip()
+			
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(clk_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
