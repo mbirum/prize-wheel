@@ -28,9 +28,10 @@ jobs:
         run: |
           prize=$(cat inventory.txt | head -n "${item_number}" | tail -n 1)
           echo "Chose ${prize} @ ${item_number}"
+          echo "### You've won a ${prize}!" >> $GITHUB_STEP_SUMMARY
           image_url="https://github.com/buymyrum/prize-wheel/blob/main/images/${prize}.png?raw=true"
-          markdown="![](${image_url})"
-          echo "$markdown" >> $GITHUB_STEP_SUMMARY
+          image_markdown="![](${image_url})"
+          echo "$image_markdown" >> $GITHUB_STEP_SUMMARY
           echo "prize=${prize}" >> $GITHUB_OUTPUT
           sed -i "${item_number}d" "inventory.txt"
       - name: Save Inventory
