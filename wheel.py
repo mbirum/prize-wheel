@@ -26,7 +26,9 @@ try:
 	potential_spin = False
 	potential_spin_position = position
 	spin_started = False
+	potential_stop = False
 	movement_start_time = None
+	movement_stop_time = None
 	spin_start_time = None
 	
 	while True:
@@ -65,11 +67,22 @@ try:
 						if position_diff >= 10:
 							print('spin started')
 							spin_started = True
+						else:
+							print('spin reset')
 						potential_spin = False
 		else:
-			if spin_started:
-				spin_started = False
-				print(f'Stopped! - {position}')
+			if not potential_stop:
+				if spin_started:
+					print('potential stop')
+					potential_stop = True
+					movement_stop_time = int(time.time())
+			else:
+				current_time = int(time.time())
+				time_diff = int(current_time - movement_stop_time)
+				if time_diff >= 1:
+					spin_started = False
+					potential_stop = False
+					print(f'Stopped! - {position}')
 	
 		clk_last = clk
 		dt_last = dt
