@@ -1,6 +1,5 @@
 from RPi import GPIO
 from time import sleep
-import time
 import sys
 import os
 # import led
@@ -22,9 +21,7 @@ dtLast = GPIO.input(dtPin)
 posLast = pos
 
 try:
-	checks = []
 	spin_started = False
-	spin_start_time = None
 	
 	while True:
 		clk = GPIO.input(clkPin)
