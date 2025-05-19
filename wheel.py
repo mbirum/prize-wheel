@@ -23,7 +23,7 @@ dt_last = GPIO.input(dt_pin)
 position_last = position
 
 try:
-	
+	spin_started = False
 	start_time = int(time.time())
 	
 	while True:
@@ -55,8 +55,14 @@ try:
 
 		current_time = int(time.time())
 		if (current_time > start_time): # every full second
-			if (position - position_last) >= 15:
-				print('spin started')
+			if not spin_started:
+				if (position - position_last) >= 25:
+					print('spin started')
+					spin_started = True
+			else:
+				if position == position_last:
+					print('stopped')
+					spin_started = False
 			position_last = position
 			start_time = current_time
 			
