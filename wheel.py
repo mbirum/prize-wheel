@@ -74,7 +74,7 @@ try:
 					url = 'https://api.github.com/repos/mbirum/prize-wheel/actions/runs?status=waiting'
 					try:
 						response = requests.get(url, headers=headers).json()
-						run_id = response['workflow_runs'][0]
+						run_id = response['workflow_runs'][0]['id']
 						if not run_id or run_id == None or len(run_id) <= 0:
 							print('could not get run id. try again')
 					except Exception as e:
