@@ -1,6 +1,5 @@
 wipe
 sticker
-cards
 socks
 sticker
 cap
