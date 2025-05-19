@@ -22,7 +22,7 @@ jobs:
           touch inventory.txt
           keys=()
           while IFS= read line; do
-            key=$(echo "$line" | cut -d'=' -f 1)
+            key=$(echo "$line" | cut -d'=' -f 1 | cut -d'|' -f 1)
             if [[ ! " ${keys[@]} " =~ " ${key} " ]]; then
               keys+=("${key}")
             fi
