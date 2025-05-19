@@ -47,7 +47,7 @@ jobs:
             if [ -n "$content" ]; then
               last_line=$(tail -n 1 "$key_file")
               echo "$last_line" >> inventory.txt
-              truncate -s "-$(wc -c < "$key_file")" "$key_file"
+              sed '$d' "$key_file"
             fi
 
             # evaluate is_done by checking contents of each key file
