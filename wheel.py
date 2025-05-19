@@ -4,28 +4,29 @@ import sys
 import os
 # import led
 
-clkPin = int(sys.argv[1])
-dtPin = int(sys.argv[2])
-knobIncrement = int(sys.argv[3])
+clk_pin = int(sys.argv[1])
+dt_pin = int(sys.argv[2])
+knob_increment = int(sys.argv[3])
+knob_increment = 1
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(clkPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(dtPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(clk_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(dt_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 min = 0
 max = 127
-pos = min
-clkLast = GPIO.input(clkPin)
-dtLast = GPIO.input(dtPin)
-posLast = pos
+position = min
+clk_last = GPIO.input(clk_pin)
+dt_last = GPIO.input(dt_pin)
+position_last = position
 
 try:
 	spin_started = False
 	
 	while True:
-		clk = GPIO.input(clkPin)
-		dt = GPIO.input(dtPin)
+		clk = GPIO.input(clk_pin)
+		dt = GPIO.input(dt_pin)
 		full = True
 	
 		#half or full click
@@ -34,28 +35,28 @@ try:
 	      
 		if full:
 			#left click
-			if clkLast != clk and dtLast == dt:
-				pos -= knobIncrement
-				if pos < min:
-					pos = max # loop back
+			if clk_last != clk and dt_last == dt:
+				position -= knobIncrement
+				if position < min:
+					position = max # loop back
 			#right click
-			elif dtLast != dt and clkLast == clk:
-				pos += knobIncrement
-				if pos > max:
-					pos = min # loop back
+			elif dt_last != dt and clk_last == clk:
+				position += knobIncrement
+				if position > max:
+					position = min # loop back
 	
-		if posLast != pos:
+		if position_last != position:
 			if not spin_started:
 				spin_started = True
 		else:
 			if spin_started:
 				spin_started = False
-				print(f'Stopped! - {pos}')
+				print(f'Stopped! - {position}')
 	
-		clkLast = clk
-		dtLast = dt
+		clk_last = clk
+		dt_last = dt
 	
-		posLast = pos
+		position_last = position
 		
 		sleep_interval = 0.01
 		sleep(sleep_interval)
