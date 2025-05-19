@@ -26,6 +26,14 @@ GPIO.setup(dt_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 min = 0
 max = 1000000
 position = 500
+
+inventory_count = 0
+with open("inventory.txt", "rb") as f:
+	inventory_count = sum(1 for _ in f)
+item_min = 1
+item_max = inventory_count
+item_position = int((item_max + item_min) / 2)
+
 clk_last = GPIO.input(clk_pin)
 dt_last = GPIO.input(dt_pin)
 position_last = position
@@ -50,11 +58,18 @@ try:
 				position -= knob_increment
 				if position < min:
 					position = max # loop back
+				item_position -= knob_increment
+				if item_position < item_min:
+					item_position = item_max
+					
 			#right click
 			elif dt_last != dt and clk_last == clk:
 				position += knob_increment
 				if position > max:
 					position = min # loop back
+				item_position += knob_increment
+				if item_position > item_max:
+					item_position = item_min
 	
 		clk_last = clk
 		dt_last = dt
@@ -68,17 +83,15 @@ try:
 					last_spin_start_position = position
 			else:
 				if position == position_last:
-					print(f'stopped - {position}')
 					spin_started = False
-					# map position to inventory value
+					
 					subprocess.run(['git', 'pull'])
 					inventory_count = 0
 					with open("inventory.txt", "rb") as f:
     						inventory_count = sum(1 for _ in f)
-					print(f'inventory_count={inventory_count}')
-					position_difference = position - last_spin_start_position
-					value = position_difference % (inventory_count+1)
-					print(f'value={value}')
+					item_max = inventory_count
+					value = item_position
+					print(f'stopped - {position} - {value}')
 					run_id = ""
 					headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {github_token}'}
 					url = 'https://api.github.com/repos/mbirum/prize-wheel/actions/runs?status=waiting'
@@ -96,6 +109,7 @@ try:
 						# print(response)
 					except Exception as e:
 						print(e)
+						
 			position_last = position
 			start_time = current_time
 			
