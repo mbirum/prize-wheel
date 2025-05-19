@@ -73,7 +73,7 @@ try:
 					# map position to inventory value
 					subprocess.run(['git', 'pull'])
 					inventory_count = 0
-					with open("inventory.txt", "rbU") as f:
+					with open("inventory.txt", "rb") as f:
     						inventory_count = sum(1 for _ in f)
 					print(f'inventory_count={inventory_count}')
 					position_difference = position - last_spin_start_position
