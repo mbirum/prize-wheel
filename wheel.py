@@ -59,7 +59,7 @@ try:
 					potential_spin_position = position
 				else:
 					current_time = int(time.time())
-					time_diff = int((current_time - movement_start_time) / 1000) # in seconds
+					time_diff = int(current_time - movement_start_time)
 					print(f'time_diff={time_diff}')
 					position_diff = position - potential_spin_position
 					print(f'position_diff={position_diff}')
