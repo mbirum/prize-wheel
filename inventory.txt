@@ -2,7 +2,6 @@ wipe
 flag
 sticker
 flag
-cap
 cards
 wipe
 cards
