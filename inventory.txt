@@ -1,6 +1,1 @@
-flag
-sticker
-wipe
-cards
-socks
-sticker
+
