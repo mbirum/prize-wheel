@@ -28,7 +28,7 @@ max = 1000000
 position = 500
 
 inventory_count = 0
-with open("inventory.txt", "rb") as f:
+with open("/home/mattbirum/prize-wheel/inventory.txt", "rb") as f:
 	inventory_count = sum(1 for _ in f)
 item_min = 1
 item_max = inventory_count
@@ -85,7 +85,7 @@ try:
 					
 					subprocess.run(['git', 'pull'])
 					inventory_count = 0
-					with open("inventory.txt", "rb") as f:
+					with open("/home/mattbirum/prize-wheel/inventory.txt", "rb") as f:
     						inventory_count = sum(1 for _ in f)
 					value = item_position
 					item_max = inventory_count - 1
