@@ -87,8 +87,8 @@ try:
 					inventory_count = 0
 					with open("inventory.txt", "rb") as f:
     						inventory_count = sum(1 for _ in f)
-					item_max = inventory_count
 					value = item_position
+					item_max = inventory_count - 1
 					print(f'stopped - {position} - {value}')
 					run_id = ""
 					headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {github_token}'}
@@ -100,6 +100,7 @@ try:
 							print('could not get run id. try again')
 					except Exception as e:
 						print(e)
+						item_max = inventory_count
 					url = f'https://api.github.com/repos/mbirum/prize-wheel/actions/runs/{run_id}/pending_deployments'
 					data = {'environment_ids': [6794031496], 'state': 'approved', 'comment': f'{value}'}
 					try:
@@ -107,6 +108,7 @@ try:
 						# print(response)
 					except Exception as e:
 						print(e)
+						item_max = inventory_count
 						
 			position_last = position
 			start_time = current_time
