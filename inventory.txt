@@ -1,4 +1,3 @@
-socks
 cap
 socks
 wipe
