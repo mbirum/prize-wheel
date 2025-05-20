@@ -1,4 +1,3 @@
-wipe
 cap
 wipe
 sticker
