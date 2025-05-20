@@ -27,6 +27,7 @@ min = 0
 max = 1000000
 position = 500
 
+subprocess.run(['git', '-C', '/home/mattbirum/prize-wheel', 'pull'])
 inventory_count = 0
 with open("/home/mattbirum/prize-wheel/inventory.txt", "rb") as f:
 	inventory_count = sum(1 for _ in f)
@@ -83,7 +84,7 @@ try:
 				if position == position_last:
 					spin_started = False
 					
-					subprocess.run(['git', 'pull'])
+					subprocess.run(['git', '-C', '/home/mattbirum/prize-wheel', 'pull'])
 					inventory_count = 0
 					with open("/home/mattbirum/prize-wheel/inventory.txt", "rb") as f:
     						inventory_count = sum(1 for _ in f)
