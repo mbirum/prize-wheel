@@ -7,7 +7,6 @@ flag
 cards
 cards
 wipe
-sticker
 cards
 socks
 wipe
