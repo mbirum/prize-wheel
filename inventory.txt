@@ -1,7 +1,6 @@
 flag
 sticker
 wipe
-wipe
 cards
 socks
 sticker
