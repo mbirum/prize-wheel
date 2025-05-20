@@ -1,4 +1,3 @@
-wipe
 cards
 socks
 cap
