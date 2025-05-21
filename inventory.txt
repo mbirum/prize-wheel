@@ -1,4 +1,3 @@
-wipe
 cards
 flag
 flag
