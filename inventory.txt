@@ -1,5 +1,4 @@
 wipe
-wipe
 socks
 cards
 cards
