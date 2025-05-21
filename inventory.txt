@@ -5,9 +5,7 @@ cap
 cap
 wipe
 cap
-cards
 wipe
-cards
 cap
 cap
 sticker
@@ -20,5 +18,6 @@ sticker
 sticker
 sticker
 sticker
+flag
 sticker
 sticker
