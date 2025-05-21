@@ -3,5 +3,5 @@ cards|a deck of cards=5
 sticker|a sticker=12
 flag|a pennant flag=2
 socks|a pair of socks=3
-wipe|a screen cleaner=6
+wipe|a screen cleaner=5
 sweatshirt|a sweatshirt=1
