@@ -1,5 +1,4 @@
 cap
-cap
 flag
 sticker
 sticker
