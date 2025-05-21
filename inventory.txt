@@ -1,4 +1,3 @@
-wipe
 socks
 cards
 cards
