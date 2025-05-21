@@ -1,5 +1,4 @@
 cap
-cap
 wipe
 cap
 cap
