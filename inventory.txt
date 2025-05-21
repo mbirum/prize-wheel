@@ -1,4 +1,3 @@
-socks
 cards
 cards
 cards
