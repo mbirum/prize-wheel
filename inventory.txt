@@ -1,6 +1,5 @@
 wipe
 wipe
-wipe
 cards
 flag
 flag
