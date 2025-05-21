@@ -1,5 +1,4 @@
 flag
-flag
 wipe
 cap
 cap
