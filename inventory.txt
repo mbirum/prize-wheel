@@ -1,4 +1,3 @@
-flag
 wipe
 cap
 cap
