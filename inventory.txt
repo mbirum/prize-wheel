@@ -1,5 +1,4 @@
 flag
-flag
 sticker
 socks
 cards
