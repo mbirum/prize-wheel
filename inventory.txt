@@ -1,6 +1,5 @@
 cards
 cards
-cards
 socks
 cap
 flag
