@@ -3,7 +3,6 @@ cap
 cap
 wipe
 cap
-wipe
 cap
 cap
 sticker
@@ -18,3 +17,4 @@ sticker
 flag
 sticker
 sticker
+flag
