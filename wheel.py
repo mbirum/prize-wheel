@@ -93,7 +93,7 @@ try:
 					print(f'stopped - {position} - {value}')
 					run_id = ""
 					headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {github_token}'}
-					url = 'https://api.github.com/repos/mbirum/prize-wheel/actions/runs?status=waiting'
+					url = 'https://api.github.com/repos/nw-actions/prize-wheel/actions/runs?status=waiting'
 					try:
 						response = requests.get(url, headers=headers).json()
 						run_id = response['workflow_runs'][0]['id']
@@ -102,8 +102,8 @@ try:
 					except Exception as e:
 						print(e)
 						item_max = inventory_count
-					url = f'https://api.github.com/repos/mbirum/prize-wheel/actions/runs/{run_id}/pending_deployments'
-					data = {'environment_ids': [6794031496], 'state': 'approved', 'comment': f'{value}'}
+					url = f'https://api.github.com/repos/nw-actions/prize-wheel/actions/runs/{run_id}/pending_deployments'
+					data = {'environment_ids': [9140519838], 'state': 'approved', 'comment': f'{value}'}
 					try:
 						response = requests.post(url, headers=headers, data=json.dumps(data)).json()
 						# print(response)
