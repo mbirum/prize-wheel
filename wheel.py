@@ -7,7 +7,7 @@ from time import sleep
 i2c = busio.I2C(board.SCL, board.SDA)
 mpr121 = adafruit_mpr121.MPR121(i2c)
 
-increment = 0.1
+increment = 0.06
 
 while True:
     for i in range(12):
