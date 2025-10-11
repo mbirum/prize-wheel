@@ -1,13 +1,15 @@
-import adafruit_mpr121.mpr121 as MPR121
+import adafruit_mpr121
 from time import sleep
 import sys
 import os
 
-channel = sys.argv[1]
+#channel = sys.argv[1]
 
 increment = 0.01
 
-cap = MPR121.MPR121()
+i2c = board.I2C()
+cap = adafruit_mpr121.MPR121_I2C(i2c)
+#cap = MPR121.MPR121()
 if not cap.begin():
     print('Error initializing MPR121')
     sys.exit(1)
