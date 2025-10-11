@@ -11,8 +11,8 @@ increment = 0.01
 
 while True:
     for i in range(12):
-        if mpr121[i].value:
+        if i == 8 and mpr121[i].value:
             print('Input {} touched!'.format(i))
-        else:
+        elif i == 8:
             print('|')
     sleep(increment)
