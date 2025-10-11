@@ -9,3 +9,5 @@ while True:
     for i in range(12):
         if mpr121[i].value:
             print('Input {} touched!'.format(i))
+        else:
+            print('|')
