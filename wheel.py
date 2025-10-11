@@ -1,4 +1,4 @@
-import Adafruit_MPR121.MPR121 as MPR121
+import adafruit_mpr121.mpr121 as MPR121
 from time import sleep
 import sys
 import os
