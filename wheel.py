@@ -8,11 +8,13 @@ i2c = busio.I2C(board.SCL, board.SDA)
 mpr121 = adafruit_mpr121.MPR121(i2c)
 
 increment = 0.06
+input_buffer = []
+buffer_size = 15
+target_pin = 8
 
 while True:
-    for i in range(12):
-        if i == 8 and mpr121[i].value:
-            print('Input {} touched!'.format(i))
-        elif i == 8:
-            print('|')
+    mpr121[target_pin].value:
+        print('Input {} touched!'.format(target_pin))
+    else:
+        print('|')
     sleep(increment)
