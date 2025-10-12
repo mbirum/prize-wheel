@@ -14,7 +14,7 @@ buffer_size = 10
 for i in range(buffer_size):
     input_buffer.append(False)
 
-interval = 0.06
+interval = 0.05
 target_pin = 8
 attempt_started = False
 
@@ -26,11 +26,9 @@ def has_attempt_started():
     return result
 
 while True:
-    # print(f'{mpr121[target_pin].value}')
     value = mpr121[target_pin].value
     input_buffer.pop(0)
     input_buffer.append(value)
-    # print(input_buffer)
 
     if value:
         if has_attempt_started():
