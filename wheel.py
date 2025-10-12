@@ -19,7 +19,7 @@ target_pin = 8
 attempt_started = False
 
 # started if buffer is all 'True'
-def has_attempt_started:
+def has_attempt_started():
     result = True
     for i in range(buffer_size):
         result = result and i
