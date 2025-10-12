@@ -10,7 +10,7 @@ mpr121 = adafruit_mpr121.MPR121(i2c)
 
 # initialize input buffer
 input_buffer = []
-buffer_size = 8
+buffer_size = 5
 for i in range(buffer_size):
     input_buffer.append(False)
 
