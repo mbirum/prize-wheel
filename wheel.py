@@ -22,7 +22,7 @@ attempt_started = False
 def has_attempt_started():
     result = True
     for i in range(buffer_size):
-        result = result and i
+        result = result and input_buffer[i]
     return result
 
 while True:
@@ -30,7 +30,7 @@ while True:
     value = mpr121[target_pin].value
     input_buffer.pop(0)
     input_buffer.append(value)
-    print(input_buffer)
+    # print(input_buffer)
 
     if value:
         if has_attempt_started():
