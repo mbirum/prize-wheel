@@ -13,8 +13,9 @@ buffer_size = 15
 target_pin = 8
 
 while True:
-    if mpr121[target_pin].value:
-        print('Input {} touched!'.format(target_pin))
-    else:
-        print('|')
+    print(f'{mpr121[target_pin].value}')
+    # if mpr121[target_pin].value:
+    #     print('Input {} touched!'.format(target_pin))
+    # else:
+    #     print('|')
     sleep(increment)
